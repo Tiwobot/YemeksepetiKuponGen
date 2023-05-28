@@ -1,2 +1,3 @@
-# YemeksepetiKuponGen
-A discount coupon generator for Yemeksepeti.
+Yemeksepeti Coupon Generator
+
+This project uses Flutter to create new accounts on yemeksepeti.
