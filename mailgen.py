@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-import dependencies
+from dependencies import dependencies
 
 PATH = dependencies.ChromeDriverLocation
 driver = webdriver.Chrome(PATH)
