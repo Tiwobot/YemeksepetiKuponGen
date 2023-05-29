@@ -1,3 +1,4 @@
+import sys
 import time
 import json
 from typing import Self
@@ -33,5 +34,24 @@ def yemeksepetiCreateAccount():
                                "userAgent": useragentarray[i]})
         print(driver.execute_script("return navigator.userAgent;"))
         driver.get("https://www.yemeksepeti.com/login/new?step=email")
-        driver.find_element(By.ID, "email").click()
-        driver.find_element(By.ID, "email").send_keys(dependencies.tempMail)
+
+    time.sleep(1.2)
+    wait = WebDriverWait(driver, 3) 
+    title = driver.title
+    if (title=="Access to this page has been denied"):
+        print("caught boting by yemeksepeti")
+        sys.exit()
+    try:
+        driver.execute_script("""
+        var l = document.getElementsByClassName("uc-default-banner")[0];
+        l.parentNode.removeChild(l);
+    """)
+        print("cookie closer did it.")
+    except:
+        print("cookie closer failed.")
+    time.sleep(1.8)
+    driver.find_element(By.ID, "email").click()
+    driver.find_element(By.ID, "email").send_keys(dependencies.tempMail)
+    driver.find_element(By.XPATH, "//button[contains(.,\'Devam Et\')]").click()
+    driver.find_element(
+        By.XPATH, "//button[contains(.,\'Doğrulama E-postası Gönder\')]").click()
