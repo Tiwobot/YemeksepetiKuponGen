@@ -10,14 +10,19 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from dependencies import dependencies
 
-PATH = dependencies.ChromeDriverLocation
-driver = webdriver.Chrome(PATH)
 
-driver.get("https://generator.email/")
-title = driver.title
-print(title)
+class MailGenerator():
+    def generateAndSet():
 
-#driver.find_element(By.CSS_SELECTOR, "a:nth-child(1) > .e7m").click()
+        PATH = dependencies.ChromeDriverLocation
+        driver = webdriver.Chrome(PATH)
 
-dependencies.tempMail=driver.find_element(By.ID, "email_ch_text").text
+        driver.get("https://generator.email/")
+        title = driver.title
+        print(title)
 
+        # driver.find_element(By.CSS_SELECTOR, "a:nth-child(1) > .e7m").click()
+
+        dependencies.tempMail = driver.find_element(
+            By.ID, "email_ch_text").text
+        print(dependencies.tempMail)
