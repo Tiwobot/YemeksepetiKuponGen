@@ -17,7 +17,9 @@ class MailChecker():
         PATH = dependencies.ChromeDriverLocation
         driver = webdriver.Chrome(PATH)
 
-        driver.get("https://generator.email/")
+        LinkString="https://generator.email/"+dependencies.tempMail
+
+        driver.get(LinkString)
         title = driver.title
         print(title)
 

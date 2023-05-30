@@ -1,7 +1,6 @@
 import sys
 import time
 import json
-from typing import Self
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -19,39 +18,38 @@ options.add_argument("--disable-blink-features=AutomationControlled")
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 options.add_experimental_option("useAutomationExtension", False)
 driver = webdriver.Chrome(executable_path=PATH, options=options)
+driver.implicitly_wait(3)
 driver.execute_script(
     "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
 useragentarray = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
 ]
 
-
-def yemeksepetiCreateAccount():
-    for i in range(len(useragentarray)):
+for i in range(len(useragentarray)):
         driver.execute_cdp_cmd("Network.setUserAgentOverride", {
                                "userAgent": useragentarray[i]})
         print(driver.execute_script("return navigator.userAgent;"))
         driver.get("https://www.yemeksepeti.com/login/new?step=email")
 
-    time.sleep(1.2)
-    wait = WebDriverWait(driver, 3) 
+
+def yemeksepetiCreateAccount():
+    wait = WebDriverWait(driver, 3)
     title = driver.title
-    if (title=="Access to this page has been denied"):
+    if (title == "Access to this page has been denied"):
         print("caught boting by yemeksepeti")
-        sys.exit()
-    try:
-        driver.execute_script("""
-        var l = document.getElementsByClassName("uc-default-banner")[0];
-        l.parentNode.removeChild(l);
-    """)
-        print("cookie closer did it.")
-    except:
-        print("cookie closer failed.")
-    time.sleep(1.8)
+        time.sleep(10)
+    element = driver.execute_script(
+        """return document.querySelector('#usercentrics-root').shadowRoot.querySelector('div div div div div div div[class="sc-cCjUiG gHlwwJ"] div div div[class="sc-lllmON fjvxqY"] div button[data-testid="uc-accept-all-button"]')""")
+    element.click()
+
+    time.sleep(0.3)
     driver.find_element(By.ID, "email").click()
+    time.sleep(1.1)
     driver.find_element(By.ID, "email").send_keys(dependencies.tempMail)
-    driver.find_element(By.XPATH, "//button[contains(.,\'Devam Et\')]").click()
-    driver.find_element(
-        By.XPATH, "//button[contains(.,\'Doğrulama E-postası Gönder\')]").click()
+    time.sleep(0.7)
+    driver.find_element(By.ID, "email").send_keys(Keys.ENTER)
+    time.sleep(2.5)
+    driver.find_element(By.XPATH, "//button[@type=\'submit\']").click()
