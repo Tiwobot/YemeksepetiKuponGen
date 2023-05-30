@@ -1,8 +1,9 @@
+import time
 from dependencies import dependencies
 from mailgen import MailGenerator
-import yemeksepetiLogger 
+import yemeksepeti_mail 
+import yemeksepeti_creator 
 from mailcheck import MailChecker
 
 MailGenerator.generateAndSet()
-yemeksepetiLogger.yemeksepetiCreateAccount()
-MailChecker.checkMail()
+yemeksepeti_creator.yemeksepetiCreator()

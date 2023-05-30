@@ -1,3 +1,3 @@
-class dependencies():
-    ChromeDriverLocation = "D:\App Folders\chromedriver.exe"
-    tempMail = "test@test.com"
+ChromeDriverLocation = "D:\App Folders\chromedriver.exe"
+tempMail = "test@test.com"
+AccountConfirmLink = "https://temporary.com"
