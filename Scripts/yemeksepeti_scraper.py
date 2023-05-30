@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from data_manager import get_mailAddress
-from dependencies import dependencies
 import winsound
 
 PATH = "D:\App Folders\chromedriver.exe"
