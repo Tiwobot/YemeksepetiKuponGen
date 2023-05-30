@@ -17,18 +17,13 @@ class MailChecker():
         PATH = dependencies.ChromeDriverLocation
         driver = webdriver.Chrome(PATH)
 
-        LinkString="https://generator.email/"+dependencies.tempMail
+        LinkString = "https://generator.email/"+dependencies.tempMail
 
         driver.get(LinkString)
         title = driver.title
-        print(title)
-
-        # driver.find_element(By.CSS_SELECTOR, "a:nth-child(1) > .e7m").click()
-
-        print(dependencies.tempMail)
-
-        element = driver.find_element(By.CSS_SELECTOR, "tr:nth-child(4) > td")
+        element = driver.find_element(
+            By.XPATH, "//*[@id=\"email-table\"]/div[2]/div[4]/div[3]/center/div[2]/table/tbody/tr[3]/td/table/tbody/tr[3]/th/a")
         actions = ActionChains(driver)
         actions.move_to_element(element).perform()
-        vars["window_handles"] = driver.window_handles
-        driver.find_element(By.LINK_TEXT, "E-MAİL ADRESİNİ ONAYLA").click()
+        print(driver.find_element(
+            By.XPATH, "//*[@id=\"email-table\"]/div[2]/div[4]/div[3]/center/div[2]/table/tbody/tr[3]/td/table/tbody/tr[3]/th/a").get_attribute("href"))
