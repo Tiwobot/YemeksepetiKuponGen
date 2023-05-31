@@ -11,35 +11,35 @@ symbols = ['*', '%', '£', '.', '?']
 
 def set_mailAddress(mail):
     try:
-        with open("mail.data", "wb") as f:
+        with open("Data/mail.data", "wb") as f:
             pickle.dump(mail, f, protocol=pickle.HIGHEST_PROTOCOL)
     except Exception as ex:
         print("Error during saving mail:", ex)
 
 def set_mail_authLink(link):
     try:
-        with open("AuthLink.data", "wb") as f:
+        with open("Data/AuthLink.data", "wb") as f:
             pickle.dump(link, f, protocol=pickle.HIGHEST_PROTOCOL)
     except Exception as ex:
         print("Error during saving authlink:", ex)
 
 def get_mailAddress():
     try:
-        with open("mail.data", "rb") as f:
+        with open("Data/mail.data", "rb") as f:
             return pickle.load(f)
     except Exception as ex:
         print("Error during loading mail:", ex)
 
 def get_mailLink():
     try:
-        with open("mail.data", "rb") as f:
+        with open("Data/mail.data", "rb") as f:
             return "https://generator.email/"+pickle.load(f)
     except Exception as ex:
         print("Error during loading link:", ex)
 
 def get_mail_authLink():
     try:
-        with open("AuthLink.data", "rb") as f:
+        with open("Data/AuthLink.data", "rb") as f:
             return pickle.load(f)
     except Exception as ex:
         print("Error during loading authlink:", ex)
@@ -68,7 +68,7 @@ def random_password():
     password += secrets.choice(string.ascii_lowercase)
     password += secrets.choice(string.digits)
     try:
-        with open("password.data", "wb") as f:
+        with open("Data/password.data", "wb") as f:
             pickle.dump(password, f, protocol=pickle.HIGHEST_PROTOCOL)
             return password
     except Exception as ex:
@@ -76,7 +76,7 @@ def random_password():
 
 def get_lastPassword():
     try:
-        with open("password.data", "rb") as f:
+        with open("Data/password.data", "rb") as f:
             return pickle.load(f)
     except Exception as ex:
         print("Error during loading password:", ex)
