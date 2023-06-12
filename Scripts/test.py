@@ -20,6 +20,3 @@ import string
 import secrets
 
 scrapeNewMail()
-YS_signup_mailStep()
-checkexistingMails()
-YS_signup_secondPhase()

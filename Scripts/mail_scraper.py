@@ -1,3 +1,4 @@
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -9,9 +10,8 @@ PATH = "D:\App Folders\chromedriver.exe"
 def scrapeNewMail():
     driver = webdriver.Chrome(executable_path=PATH)
     driver.get("https://generator.email/")
-    emailtxt = driver.find_element(By.ID, "email_ch_text").text
-    set_mailAddress(emailtxt)
-    driver.close()
+    time.sleep(700)
+    
 
 
 def checkexistingMails():
