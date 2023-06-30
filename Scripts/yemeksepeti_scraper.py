@@ -45,7 +45,7 @@ def YS_signup_mailStep():
     driver.find_element(By.ID, "email").send_keys(get_mailAddress())
     time.sleep(1.2)
     driver.find_element(By.ID, "email").send_keys(Keys.ENTER)
-    time.sleep(2.7)
+    time.sleep(5.7)
     driver.find_element(By.XPATH, "//button[@type=\'submit\']").click()
     time.sleep(2.5)
     driver.close()
